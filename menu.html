@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <style>
+    /* Google Fonts Link */
+    @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+      /* Colors */
+      --white-color: #fff;
+      --dark-color: #252525;
+      --primary-color: #3b141c;
+      --secondary-color: #f3961c;
+      --light-pink-color: #faf4f5;
+      --medium-gray-color: #ccc;
+
+      /* Font size */
+      --font-size-s: 0.9rem;
+      --font-size-n: 1rem;
+      --font-size-m: 1.12rem;
+      --font-size-l: 1.5rem;
+      --font-size-xl: 2rem;
+      --font-size-xxl: 2.3rem;
+
+      /* Font weight */
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+
+      /* Border radius */
+      --border-radius-s: 8px;
+      --border-radius-m: 30px;
+      --border-radius-circle: 50%;
+
+      /* Site max width */
+      --site-max-width: 1300px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Stylings for whole site */
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    :where(section, footer) .section-content {
+      margin: 0 auto;
+      padding: 0 20px;
+      max-width: var(--site-max-width);
+    }
+
+    section .section-title {
+      text-align: center;
+      padding: 60px 0 100px;
+      text-transform: uppercase;
+      font-size: var(--font-size-xl);
+    }
+
+    section .section-title::after {
+      content: "";
+      width: 80px;
+      height: 5px;
+      display: block;
+      margin: 10px auto 0;
+      background: var(--secondary-color);
+      border-radius: var(--border-radius-s);
+    }
+
+    /* Navbar styling */
+    header {
+      z-index: 5;
+      width: 100%;
+      position: fixed;
+      background: #5A3220;
+      top: 0;
+      left: 0;
+    }
+
+    header .navbar {
+      display: flex;
+      padding: 30px;
+      align-items: center;
+      margin: 0 auto;
+      justify-content: center;
+      /* Center the content horizontally */
+    }
+
+    .navbar .nav-logo {
+      position: absolute;
+      /* Keep the logo positioned at the start */
+      left: 20px;
+      /* Adjust the left position as needed */
+    }
+
+    .navbar .nav-logo img {
+      height: 150px;
+      /* Increase the logo image size */
+      width: auto;
+      /* Maintain the aspect ratio of the image */
+    }
+
+    .navbar .nav-menu {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .navbar .nav-menu .nav-link {
+      padding: 10px 18px;
+      color: var(--white-color);
+      font-size: var(--font-size-m);
+      border-radius: var(--border-radius-m);
+      transition: 0.3s ease;
+    }
+
+    .navbar .nav-menu .nav-link:hover {
+      color: var(--primary-color);
+      background: #FFF8DC;
+    }
+
+    .navbar :where(#menu-open-button, #menu-close-button) {
+      display: none;
+    }
+
+    /* Video Styling */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      /* Aesthetic font */
+      background-color: #8B4513;
+      /* Brown background */
+      color: #80471C;
+      /* Light text color for contrast */
+      margin: 0;
+      padding: 20px 10px;
+      text-align: center;
+      margin-top: 130px;
+    }
+
+    h1 {
+      margin-top: 100px;
+      font-size: 3.0rem;
+      color: #432616;
+      margin-bottom: 10px;
+
+    }
+
+    .category-buttons {
+      margin-bottom: 5px;
+      margin-top: 70px;
+
+
+    }
+
+    .category-buttons button {
+      background-color: #5A3220;
+      color: #FFF8DC;
+      border: none;
+      padding: 20px 60px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .category-buttons button:hover {
+      background-color: #3C1E12;
+      transform: scale(1.05);
+    }
+
+    .category-buttons button:focus {
+      outline: 2px solid #FFF8DC;
+      outline-offset: 4px;
+    }
+
+    .category-buttons button.active {
+      background-color: #3C1E12;
+      font-weight: bold;
+    }
+
+    .menu-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 0;
+      overflow: hidden;
+      position: relative;
+
+    }
+
+    .menu-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      flex-grow: 1;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #5A3220;
+      color: #FFF8DC;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+
+    .arrow.left {
+      left: 0;
+      /* Adjust as needed */
+    }
+
+    .arrow.right {
+      right: 0;
+      /* Adjust as needed */
+    }
+
+    .arrow:hover {
+      background-color: #3C1E12;
+    }
+
+    .menu-card {
+      background-color: #d5bba5;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      padding: 12px;
+      text-align: center;
+      margin: 0 15px;
+      flex: 0 0 auto;
+      width: 250px;
+      transition: transform 0.5s;
+      margin-bottom: 120px;
+      margin-top: 80px;
+    }
+
+    .menu-card:hover {
+      transform: scale(1.10);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .menu-card h3 {
+      margin: 8px 0;
+      font-size: 1rem;
+      color: #5A3220;
+    }
+
+    .menu-card span {
+      color: #3C1E12;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #5A3220;
+      color: #FFF8DC;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.5s;
+    }
+
+    .arrow.left {
+      left: 0;
+      z-index: 1;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .arrow:hover {
+      background-color: #3C1E12;
+    }
+
+    @media (max-width: 768px) {
+      .menu-card {
+        width: 140px;
+      }
+    }
+
+    /* Accessibility Options */
+    .accessibility-options {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .accessibility-options button {
+      background: #5A3220;
+      border-radius: 60px;
+      padding: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .accessibility-options button:hover {
+      color: powderblue;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .dark-mode button {
+      background-color: #333;
+      color: #fff;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Fixed position */
+      bottom: 20px;
+      /* Place it at the bottom of the page */
+      right: 30px;
+      /* Place it 30px from the right */
+      z-index: 99;
+      /* Ensure it is above other content */
+      font-size: 18px;
+      /* Increase font size */
+      border: none;
+      /* Remove borders */
+      outline: none;
+      /* Remove outline */
+      background-color: #5A3220;
+      /* Dark grey background */
+      color: black;
+      /* White text */
+      cursor: pointer;
+      /* Pointer cursor on hover */
+      padding: 15px;
+      /* Some padding */
+      border-radius: 10px;
+      /* Rounded corners */
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #FFF8DC;
+      /* Darker grey on hover */
+    }
+
+
+    /* Footer section styling */
+    .footer-section {
+      padding: 20px 10px;
+      background: #493628;
+      /* Dark background */
+      color: #fff;
+      /* White text */
+      text-align: center;
+      /* Center-align text */
+      width: 100%;
+      position: absolute;
+      left: 0;
+    }
+
+    .footer-section .section-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      /* Adjusted for more spacing */
+    }
+
+    .footer-section .about-us,
+    .footer-section .address,
+    .footer-section .business-hours {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .footer-section .social-link-list {
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      /* Adjust the gap between the icons as needed */
+      margin-top: 10px;
+      /* Adjust the margin as needed */
+    }
+
+    .footer-section .social-link {
+      font-size: 24px;
+      /* Larger icons */
+      color: #fff;
+      text-decoration: none;
+      /* Remove underline */
+      transition: color 0.3s ease;
+    }
+
+    .footer-section .social-link:hover {
+      color: #0073e6;
+      /* Change color on hover */
+    }
+
+    .footer-section .policy-text {
+      font-size: 14px;
+    }
+
+    .footer-section .policy-link {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-section .separator {
+      color: #fff;
+      margin: 0 5px;
+    }
+
+    /* Media queries for smaller screens */
+    @media (max-width: 768px) {
+      .footer-section {
+        padding: 15px 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Video -->
+  <video autoplay loop muted>
+    <source src="bgvid2.mp4" type="video/mp4">
+  </video>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Header / Navbar -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="logob.png" alt="Logo" />
+      </a>
+
+      <ul class="nav-menu">
+
+        <li class="nav-item">
+          <a href="home.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="menu.html" class="nav-link">Menu</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="team.html" class="nav-link">Team</a>
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <h1>BreadSpire Menu</h1>
+  <h2>-Satisfy Your Cravings-</h2>
+  <br>
+
+  <div class="category-buttons">
+    <button onclick="location.href='#pastry'">Pastry</button>
+    <button onclick="location.href='#dessert'">Dessert</button>
+  </div>
+
+  <h1 id="pastry">Pastry</h1>
+  <div class="menu-container" id="pastryMenu">
+    <button class="arrow left" onclick="scrollMenu('pastryMenu', -1)">&#8249;</button>
+    <div class="menu-wrapper">
+      <!-- Pastry Menu Items -->
+      <div class="menu-card"><img src="pastry1.jpg" alt="Snowy doughnut">
+        <h3>Snowy doughnut</h3><span>RM4.00</span>
+      </div>
+      <div class="menu-card"><img src="pastry2.jpg" alt="Garlic cheese chicken">
+        <h3>Garlic cheese chicken</h3><span>RM5.00</span>
+      </div>
+      <div class="menu-card"><img src="pastry3.jpg" alt="Danish Pastry">
+        <h3>Hazelnut oreo bun</h3><span>RM4.50</span>
+      </div>
+      <div class="menu-card"><img src="pastry4.jpg" alt="Macaron">
+        <h3>Garlic cheese dome</h3><span>RM3.00</span>
+      </div>
+      <div class="menu-card"><img src="pastry5.jpg" alt="Éclair">
+        <h3>Milk bun</h3><span>RM4.20</span>
+      </div>
+      <div class="menu-card"><img src="pastry6.jpg" alt="Bagel">
+        <h3>Furutsu danish</h3><span>RM3.50</span>
+      </div>
+      <div class="menu-card"><img src="pastry7.jpg" alt="Muffin">
+        <h3>Sausage bun</h3><span>RM4.80</span>
+      </div>
+      <div class="menu-card"><img src="pastry8.jpg" alt="Cinnamon Roll">
+        <h3>Custard bun</h3><span>RM4.60</span>
+      </div>
+      <div class="menu-card"><img src="pastry9.jpg" alt="Scone">
+        <h3>Bomloni chocolate</h3><span>RM3.80</span>
+      </div>
+      <div class="menu-card"><img src="pastry10.jpg" alt="Tart">
+        <h3>Bomloni cream cheese</h3><span>RM3.80</span>
+      </div>
+    </div>
+    <button class="arrow right" onclick="scrollMenu('pastryMenu', 1)">&#8250;</button>
+  </div>
+
+
+
+  <h1 id="dessert">Dessert</h1>
+  <div class="menu-container" id="dessertMenu">
+    <button class="arrow left" onclick="scrollMenu('dessertMenu', -1)">&#8249;</button>
+    <div class="menu-wrapper">
+      <!-- Dessert Menu Items -->
+      <div class="menu-card"><img src="cake1.jpg" alt="Espresso">
+        <h3>Hanjuku cheese roll </h3><span>RM8.00</span>
+      </div>
+      <div class="menu-card"><img src="cake2.jpg" alt="Latte">
+        <h3>Vanilla cheese roll </h3><span>RM8.00</span>
+      </div>
+      <div class="menu-card"><img src="cake3.jpg" alt="Cappuccino">
+        <h3>Onde-onde cake</h3><span>RM75.50</span>
+      </div>
+      <div class="menu-card"><img src="cake4.jpg" alt="Americano">
+        <h3>Rainbow cake</h3><span>RM78.50</span>
+      </div>
+      <div class="menu-card"><img src="cake5.jpg" alt="Mocha">
+        <h3>Darkchoco cake</h3><span>RM70.00</span>
+      </div>
+      <div class="menu-card"><img src="cake6.jpg" alt="Matcha Latte">
+        <h3>Japanese cheese cake</h3><span>RM60.00</span>
+      </div>
+      <div class="menu-card"><img src="cake7.jpg" alt="Chai Latte">
+        <h3>Snowy cornchoco cake</h3><span>RM67.50</span>
+      </div>
+      <div class="menu-card"><img src="cake8.jpg" alt="Hot Chocolate">
+        <h3>White chocoball cake </h3><span>RM69.50</span>
+      </div>
+      <div class="menu-card"><img src="cake9.jpg" alt="Tea">
+        <h3>Layer coffee cake</h3><span>RM79.00</span>
+      </div>
+      <div class="menu-card"><img src="cake10.jpg" alt="Iced Coffee">
+        <h3>Choco forest cake</h3><span>RM75.00</span>
+      </div>
+    </div>
+    <button class="arrow right" onclick="scrollMenu('dessertMenu', 1)">&#8250;</button>
+  </div>
+
+
+  <!-- Footer section -->
+  <footer class="footer-section">
+    <div class="section-content">
+      <!-- About Us Section -->
+      <div class="about-us">
+        <p><strong>About BreadSpire</strong></p>
+        <p>We offer freshly baked goods made with love and passion. Join us in savoring the best bakery delights in
+          town.</p>
+      </div>
+
+      <!-- Social Links -->
+      <div class="social-link-list">
+        <!-- Email icon -->
+        <a href="mailto:breadspire@gmail.com" class="social-link" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <!-- Instagram logo -->
+        <a href="https://www.instagram.com/breadspire" class="social-link" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <!-- WhatsApp logo -->
+        <a href="https://wa.me/+60169512571" class="social-link" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <!-- Twitter logo -->
+        <a href="https://twitter.com/breadspire" class="social-link" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+
+      <!-- Address Section -->
+      <div class="address">
+        <p><strong>Visit Us:</strong></p>
+        <p>11, Jalan Teknologi, Taman Sains Selangor, 1, PJU 5, Kota Damansara, 47810 Petaling Jaya, Selangor.</p>
+      </div>
+
+      <!-- Business Hours -->
+      <div class="business-hours">
+        <p><strong>Business Hours:</strong></p>
+        <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
+        <p>Sat-Sun: Closed</p>
+      </div>
+
+      <!-- Privacy & Refund Policies -->
+      <p class="policy-text">
+        Privacy Policy
+        <span class="separator">•</span>
+        Refund Policy
+      </p>
+
+
+      <!-- Copyright -->
+      <p class="copyright-text">© 2025 BreadSpire</p>
+    </div>
+  </footer>
+
+  <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+
+
+  // accessibility-options //
+
+  <div class="accessibility-options">
+    <button onclick="increaseTextSize()" title="Increase Text Size">🔼</button>
+    <button onclick="decreaseTextSize()" title="Decrease Text Size">🔽</button>
+    <button onclick="toggleDarkMode()">🌙</button>
+  </div>
+  </div>
+
+  // accessibility-options //
+  <script>
+    // Minimum and maximum font size
+    const MIN_FONT_SIZE = 12; // Set a lower limit for more flexibility
+    const MAX_FONT_SIZE = 60; // Optional upper limit
+    let currentFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+    // Function to increase text size for the entire page
+    function increaseTextSize() {
+      if (currentFontSize < MAX_FONT_SIZE) {
+        currentFontSize += 2;
+        document.documentElement.style.fontSize = currentFontSize + "px";
+      }
+    }
+
+    // Function to decrease text size for the entire page
+    function decreaseTextSize() {
+      if (currentFontSize > MIN_FONT_SIZE) {
+        currentFontSize -= 2;
+        document.documentElement.style.fontSize = currentFontSize + "px";
+      }
+    }
+  </script>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+
+  <script>
+    function scrollMenu(menuId, direction) {
+      const menuWrapper = document.getElementById(menuId)?.querySelector('.menu-wrapper');
+      if (!menuWrapper) return;
+
+      const menuCards = menuWrapper.querySelectorAll('.menu-card');
+      const cardWidth = menuCards[0].offsetWidth + 20;
+      const visibleCards = Math.floor(menuWrapper.parentElement.offsetWidth / cardWidth);
+      const totalCards = menuCards.length;
+
+      let currentTransform = parseInt(menuWrapper.style.transform.replace('translateX(', '').replace('px)', '')) || 0;
+      const maxTransform = -(totalCards - visibleCards) * cardWidth;
+
+      let newTransform = currentTransform - direction * cardWidth;
+      if (newTransform > 0) newTransform = 0;
+      if (newTransform < maxTransform) newTransform = maxTransform;
+
+      menuWrapper.style.transform = `translateX(${newTransform}px)`;
+    }
+  </script>
+
+  //scroll button//
+  <script>
+    // Show the button when the user scrolls down 20px from the top
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      const btn = document.getElementById("scrollTopBtn");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function scrollToTop() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
+
+
+
+</body>
+
+</html>

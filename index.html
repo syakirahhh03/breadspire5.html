@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreadSpire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- External font -->
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Poppins;
+            background-image: url('bakery2.jpg');
+            /* Replace 'your-image-file.jpg' with your actual image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            margin: 0;
+            display: block;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+
+        }
+
+        #txt {
+            font-size: 35px;
+            font-weight: bold;
+            color: white;
+        }
+
+
+
+        /* Logo */
+        .logo img {
+            width: 200px;
+            /* Adjust the size of the logo if needed */
+            transition: transform 0.3s ease-in-out;
+        }
+
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin: 0;
+            padding-top: 5px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+            padding-top: 5px;
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 10px;
+            color: #000;
+            background: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background: #ccc;
+            transform: scale(1.05);
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            bottom: 10px;
+            top: 30px;
+        }
+
+        .social-icons img {
+            width: 38px;
+            height: 40px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 24px;
+            }
+
+            .button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            .social-icons img {
+                width: 30px;
+                height: 30px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Navbar Styling */
+            header .navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 22px;
+            }
+
+            .nav-brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                /* Adjust the spacing between logo and text */
+            }
+
+            .nav-logo img {
+                height: 100px;
+                /* Adjust logo size */
+            }
+
+            .brand-name {
+                font-size: var(--font-size-xl);
+                color: var(--white-color);
+                font-weight: var(--font-weight-bold);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero fade-in">
+        <div class="logo">
+            <img src="logob.png" alt="logo" class="logo">
+        </div>
+
+
+        <body onload="startTime()">
+            <div id="txt"></div>
+
+
+            <h2>BreadSpire Bakery</h2>
+            <p>Since 2022</p>
+            <p>“Crafted with Passion, Baked to Perfection.”</p>
+            <a href="home.html" class="button">EXPLORE&#129505</a>
+
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="mailto:BreadSpire@gmail.com"><img src="email.jpg" alt="Email"></a>
+                <a href="https://www.instagram.com/breadspire"><img src="instagram.jpg" alt="Instagram"></a>
+                <a href="https://wa.me/+60169512571"><img src="whatsapp.jpg" alt="WhatsApp"></a>
+            </div>
+    </div>
+
+    <script>
+        function startTime() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+            setTimeout(startTime, 1000);
+        }
+
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+
+</body>
+
+</html>

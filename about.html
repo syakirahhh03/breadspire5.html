@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+
+/* Google Fonts Link */
+@import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  /* Colors */
+  --white-color: #fff;
+  --dark-color: #252525;
+  --primary-color: #3b141c;
+  --secondary-color: #f3961c;
+  --light-pink-color: #faf4f5;
+  --medium-gray-color: #ccc;
+
+  /* Font size */
+  --font-size-s: 0.9rem;
+  --font-size-n: 1rem;
+  --font-size-m: 1.12rem;
+  --font-size-l: 1.5rem;
+  --font-size-xl: 2rem;
+  --font-size-xxl: 2.3rem;
+
+  /* Font weight */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Border radius */
+  --border-radius-s: 8px;
+  --border-radius-m: 30px;
+  --border-radius-circle: 50%;
+
+  /* Site max width */
+  --site-max-width: 1300px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Stylings for whole site */
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+img {
+  width: 100%;
+}
+
+:where(section, footer) .section-content {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: var(--site-max-width);
+}
+
+section .section-title {
+  text-align: center;
+  padding: 60px 0 100px;
+  text-transform: uppercase;
+  font-size: var(--font-size-xl);
+}
+
+section .section-title::after {
+  content: "";
+  width: 80px;
+  height: 5px;
+  display: block;
+  margin: 10px auto 0;
+  background: var(--secondary-color);
+  border-radius: var(--border-radius-s);
+}
+
+/* Navbar styling */
+header {
+  z-index: 5;
+  width: 100%;
+  position: fixed;
+  background:#5A3220;
+  top: 0;
+  left:0;
+  }
+
+header .navbar {
+  display: flex;
+  padding: 22px;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center; /* Center the content horizontally */
+}
+
+.navbar .nav-logo {
+  position: absolute; /* Keep the logo positioned at the start */
+  left: 20px; /* Adjust the left position as needed */
+}
+
+.navbar .nav-logo img {
+  height: 150px; /* Increase the logo image size */
+  width: auto; /* Maintain the aspect ratio of the image */
+}
+
+.navbar .nav-menu {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.navbar .nav-menu .nav-link {
+  padding: 10px 18px;
+  color: var(--white-color);
+  font-size: var(--font-size-m);
+  border-radius: var(--border-radius-m);
+  transition: 0.3s ease;
+}
+
+.navbar .nav-menu .nav-link:hover {
+  color: var(--primary-color);
+  background: #FFF8DC;
+}
+
+.navbar :where(#menu-open-button, #menu-close-button) {
+  display: none;
+}
+
+/* Video Styling */
+video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1;
+}
+
+body {
+      font-family: 'Georgia', serif; /* Aesthetic font */
+      background-color: #8B4513; /* Brown background */
+      color: #80471C; /* Light text color for contrast */
+      margin: 0;
+      padding: 20px 10px;
+      text-align: center;
+      margin-top:130px;
+      }
+
+ h1 {
+     margin-top: 100px;
+     font-size: 3.0rem;
+     color: #432616;
+     margin-bottom:10px;
+            
+     }
+
+
+ /* Heading Style */
+h2 {
+     color: #000;  /* Changes heading to black */
+   }
+
+/* List Style */
+     ul, ol {
+     color: #000;  /* Changes text in lists to black */
+   }
+
+/* Accessibility Options */
+.accessibility-options {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .accessibility-options button {
+            background: #5A3220;
+            border-radius: 60px;
+            padding: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .accessibility-options button:hover {
+            color: powderblue;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+        }
+
+.dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .dark-mode button {
+        background-color: #333;
+        color: #fff;
+    }
+
+ #scrollTopBtn {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed position */
+        bottom: 20px; /* Place it at the bottom of the page */
+        right: 30px; /* Place it 30px from the right */
+        z-index: 99; /* Ensure it is above other content */
+        font-size: 18px; /* Increase font size */
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #5A3220; /* Dark grey background */
+        color:black; /* White text */
+        cursor: pointer; /* Pointer cursor on hover */
+        padding: 15px; /* Some padding */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    #scrollTopBtn:hover {
+        background-color:  #FFF8DC; /* Darker grey on hover */
+    }
+
+
+        /* Section Styling */
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+	    margin-bottom: 30px;
+        }
+
+        section h2 {
+            color: #e76f51;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #f4a261;
+            padding-bottom: 5px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.8;
+        }
+
+
+
+        ul li {
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+
+       
+        /* Button Styling for Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            section h2 {
+                font-size: 1.6em;
+            }
+
+            section p,
+            ul li {
+                font-size: 1em;
+            }
+
+ }
+
+/* Footer section styling */
+.footer-section {
+  padding: 20px 10px;
+  background: #493628; /* Dark background */
+  color: #fff; /* White text */
+  text-align: center; /* Center-align text */
+  width: 100%;
+  position:absolute;
+  left:0;
+}
+
+.footer-section .section-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Adjusted for more spacing */
+}
+
+.footer-section .about-us,
+.footer-section .address,
+.footer-section .business-hours {
+  font-size: 14px;
+  text-align: center;
+}
+
+.footer-section .social-link-list {
+    justify-content: center;
+  align-items: center;
+  gap: 30px; /* Adjust the gap between the icons as needed */
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.footer-section .social-link {
+  font-size: 24px; /* Larger icons */
+  color: #fff;
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease;
+}
+
+.footer-section .social-link:hover {
+  color: #0073e6; /* Change color on hover */
+}
+
+.footer-section .policy-text {
+  font-size: 14px;
+}
+
+.footer-section .policy-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section .separator {
+  color: #fff;
+  margin: 0 5px;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 15px 5px;
+  }
+}
+   </style>
+</head>
+<body>
+
+<!-- Background Video -->
+	<video autoplay loop muted>
+	<source src="bgvid2.mp4" type="video/mp4">
+</video>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Header / Navbar -->
+    <header>
+      <nav class="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="logob.png" alt="Logo" />
+      </a>      
+
+        <ul class="nav-menu">
+         
+          <li class="nav-item">
+            <a href="home.html" class="nav-link">Home</a>
+          </li> 
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a> 
+          </li>
+          <li class="nav-item">
+            <a href="menu.html" class="nav-link">Menu</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="team.html" class="nav-link">Team</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+        </ul>
+
+         </nav>
+    </header>
+
+
+<h1>About BreadSpire </h1>
+<h2>Know more about us!</h2>
+<br>
+
+<!-- Vision Section -->
+<section>
+    <h2><center>OUR VISION</center></h2>
+    <p>"At BreadSpire Bakery, our vision is to bring joy with every bite. We create delicious, handcrafted treats that inspire happiness and connect our community. Through quality ingredients and creative baking, we aim to be the place where smiles are shared and memories are made."</p>
+</section>
+
+<!-- Mission Section -->
+<section>
+    <h2><center>OUR MISSION</center></h2>
+    <p>"To create delicious, high-quality treats that bring joy to our customers, using fresh ingredients and a passion for baking."</p>
+</section>
+
+<!-- Objectives Section -->
+<section>
+<div style="text-align: center; colour: black">
+    <h2><center>OUR OBJECTIVES</center></h2>
+  <ol style="list-style-position: inside; padding-left: 0;">
+    <ol>
+        <li>Create Delicious Treats</li>
+        <li>Use Quality Ingredients</li>
+        <li>Create Customer Loyalty</li>
+        <li>Support Sustainability</li>
+	<li>Expand Offerings</li>
+    </ol>
+</div>
+</section>
+
+<!-- History Section -->
+<section>
+    <h2><center>OUR HISTORY</center></h2>
+    <p>Founded in 2022 by Nurul Aina Fathihah binti Ahmad Fuad,  BreadSpire Bakery started as a small home-based business with a dream to share delicious homemade baked goods. Over time, it grew into a beloved local bakery known for its warmth, quality, and creativity in baking.</p>
+</section>
+
+
+
+<!-- Footer section -->
+<footer class="footer-section">
+  <div class="section-content">
+
+    <!-- About Us Section -->
+    <div class="about-us">
+      <p><strong>About BreadSpire</strong></p>
+      <p>We offer freshly baked goods made with love and passion. Join us in savoring the best bakery delights in town.</p>
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-link-list">
+      <!-- Email icon -->
+      <a href="mailto:breadspire@gmail.com" class="social-link" rel="noopener noreferrer">
+    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+    <span class="sr-only">Send Email to BreadSpire</span> 
+</a>
+      <!-- Instagram logo -->
+      <a href="https://www.instagram.com/breadspire" class="social-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <!-- WhatsApp logo -->
+      <a href="https://wa.me/+60169512571" class="social-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+      <!-- Twitter logo -->
+      <a href="https://twitter.com/breadspire" class="social-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+    </div>
+
+    <!-- Address Section -->
+    <div class="address">
+      <p><strong>Visit Us:</strong></p>
+      <p>11, Jalan Teknologi, Taman Sains Selangor, 1, PJU 5, Kota Damansara, 47810 Petaling Jaya, Selangor.</p>
+    </div>
+
+    <!-- Business Hours -->
+    <div class="business-hours">
+      <p><strong>Business Hours:</strong></p>
+      <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
+      <p>Sat-Sun: Closed</p>
+    </div>
+
+    <!-- Privacy & Refund Policies -->
+    <p class="policy-text">
+      Privacy Policy
+      <span class="separator">•</span>
+      Refund Policy
+    </p>
+
+    <!-- Copyright -->
+    <p class="copyright-text">© 2025 BreadSpire</p>
+  </div>
+</footer>
+
+<button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+
+
+
+// accessibility-options // 
+
+<div class="accessibility-options">
+            <button onclick="increaseTextSize()" title="Increase Text Size">🔼</button>
+            <button onclick="decreaseTextSize()" title="Decrease Text Size">🔽</button>
+<button onclick="toggleDarkMode()">🌙</button>
+        </div>
+    </div>
+
+// accessibility-options // 
+<script>
+    // Minimum and maximum font size
+    const MIN_FONT_SIZE = 12; // Set a lower limit for more flexibility
+    const MAX_FONT_SIZE = 60; // Optional upper limit
+    let currentFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+    // Function to increase text size for the entire page
+    function increaseTextSize() {
+        if (currentFontSize < MAX_FONT_SIZE) {
+            currentFontSize += 2;
+            document.documentElement.style.fontSize = currentFontSize + "px";
+        }
+    }
+
+    // Function to decrease text size for the entire page
+    function decreaseTextSize() {
+        if (currentFontSize > MIN_FONT_SIZE) {
+            currentFontSize -= 2;
+            document.documentElement.style.fontSize = currentFontSize + "px";
+        }
+    }
+</script>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+
+
+//scroll button//
+<script>
+    // Show the button when the user scrolls down 20px from the top
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        const btn = document.getElementById("scrollTopBtn");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function scrollToTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+
+
+
+
+</body>
+</html>

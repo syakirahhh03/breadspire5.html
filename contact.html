@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <style>
+    /* Google Fonts Link */
+    @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    :root {
+      /* Colors */
+      --white-color: #fff;
+      --dark-color: #252525;
+      --primary-color: #3b141c;
+      --secondary-color: #f3961c;
+      --light-pink-color: #faf4f5;
+      --medium-gray-color: #ccc;
+
+      /* Font size */
+      --font-size-s: 0.9rem;
+      --font-size-n: 1rem;
+      --font-size-m: 1.12rem;
+      --font-size-l: 1.5rem;
+      --font-size-xl: 2rem;
+      --font-size-xxl: 2.3rem;
+
+      /* Font weight */
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+
+      /* Border radius */
+      --border-radius-s: 8px;
+      --border-radius-m: 30px;
+      --border-radius-circle: 50%;
+
+      /* Site max width */
+      --site-max-width: 1300px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Stylings for whole site */
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    :where(section, footer) .section-content {
+      margin: 0 auto;
+      padding: 0 20px;
+      max-width: var(--site-max-width);
+    }
+
+    section .section-title {
+      text-align: center;
+      padding: 6px 0 10px;
+      text-transform: uppercase;
+      font-size: var(--font-size-xl);
+      margin-top: 8px;
+    }
+
+    section .section-title::after {
+      content: "";
+      width: 80px;
+      height: 5px;
+      display: block;
+      margin: 10px auto 0;
+      margin-top: 9px;
+      background: var(--secondary-color);
+      border-radius: var(--border-radius-s);
+    }
+
+    /* Navbar styling */
+    header {
+      z-index: 5;
+      width: 100%;
+      position: fixed;
+      background: #5A3220;
+      top: 0;
+      left: 0;
+    }
+
+    header .navbar {
+      display: flex;
+      padding: 30px;
+      align-items: center;
+      margin: 0 auto;
+      justify-content: center;
+      /* Center the content horizontally */
+    }
+
+    .navbar .nav-logo {
+      position: absolute;
+      /* Keep the logo positioned at the start */
+      left: 20px;
+      /* Adjust the left position as needed */
+    }
+
+    .navbar .nav-logo img {
+      height: 150px;
+      /* Increase the logo image size */
+      width: auto;
+      /* Maintain the aspect ratio of the image */
+    }
+
+    .navbar .nav-menu {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .navbar .nav-menu .nav-link {
+      padding: 10px 18px;
+      color: var(--white-color);
+      font-size: var(--font-size-m);
+      border-radius: var(--border-radius-m);
+      transition: 0.3s ease;
+    }
+
+    .navbar .nav-menu .nav-link:hover {
+      color: var(--primary-color);
+      background: #FFF8DC;
+    }
+
+    .navbar :where(#menu-open-button, #menu-close-button) {
+      display: none;
+    }
+
+    /* Video Styling */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    body {
+      font-family: 'poppins', serif;
+      /* Aesthetic font */
+      background-color: #8B4513;
+      /* Brown background */
+      color: #80471C;
+      /* Light text color for contrast */
+      margin: 0;
+      padding: 20px 10px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    h1 {
+      margin-top: 100px;
+      font-size: 3.0rem;
+      color: #432616;
+      margin-bottom: 10px;
+
+    }
+
+    /* Contact Map */
+    .contact-map {
+
+      max-width: 100%;
+    }
+
+    .contact-map-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: rgba(69, 67, 63, 0.289);
+      gap: 20px;
+      max-width: 1070px;
+      margin: 0 auto;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .contact-map h1 {
+      font-size: 3.5rem;
+      color: #b67c5a;
+      margin-bottom: 20px;
+      font-family: 'poppins', serif;
+
+    }
+
+    .contact-map h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .contact-map p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      border: 0;
+      border-radius: 5px;
+      position: relative;
+
+    }
+
+    /******Contact details Section */
+    .contact-details-section {
+      text-align: center;
+      padding: 10px 20px;
+
+
+    }
+
+    .contact-details-header h1 {
+      font-size: 3.5rem;
+      color: #b67c5a;
+      margin-bottom: 20px;
+      font-family: 'poppins', serif;
+
+
+    }
+
+    .contact-details-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      transition: transform 0.3s;
+    
+    }
+    .contact-details-item:hover {
+      transform: scale(1.10);
+     	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+
+
+    }
+    .contact-details-item {
+
+      background-color: #fff8f0;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      transition: transform 0.3s;
+      text-align: center;
+
+    }
+
+    .contact-details-item h3 {
+      font-size: 20px;
+      color: #8c5725;
+      margin-bottom: 10px;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+
+
+    }
+
+    .contact-details-item p {
+      line-height: 1.6;
+      color: #4b3f3f;
+      align-items: center;
+
+    }
+
+    .contact-details-item a {
+      text-decoration: none;
+      color: #8c5725;
+      font-weight: bold;
+    }
+
+    .contact-details-item a:hover {
+      text-decoration: underline;
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #31855a;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Contact Form section styling */
+    .contact-form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 60px 20px;
+      gap: 50px;
+    }
+
+    .contact-form-info {
+      max-width: 400px;
+    }
+
+    .contact-form-info h1 {
+      font-size: 3.5rem;
+      color: #b67c5a;
+      margin-bottom: 20px;
+      font-family: 'Poppins', serif;
+    }
+
+    .contact-form-info p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .coffee-note {
+      font-style: italic;
+      color: #6a4b3f;
+    }
+
+    .contact-form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      justify-content: flex;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #b67c5a;
+    }
+
+    .name-fields {
+      display: flex;
+      gap: 10px;
+    }
+
+    .name-fields input {
+      flex: 1;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    button.submit-btn {
+      background: #b67c5a;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button.submit-btn:hover {
+      background: #945f43;
+      transform: translateY(-3px);
+    }
+
+    button.submit-btn:active {
+      transform: translateY(0);
+    }
+
+
+    /* Accessibility Options */
+    .accessibility-options {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .accessibility-options button {
+      background: #5A3220;
+      border-radius: 60px;
+      padding: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .accessibility-options button:hover {
+      color: powderblue;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .dark-mode button {
+      background-color: #333;
+      color: #fff;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Fixed position */
+      bottom: 20px;
+      /* Place it at the bottom of the page */
+      right: 30px;
+      /* Place it 30px from the right */
+      z-index: 99;
+      /* Ensure it is above other content */
+      font-size: 18px;
+      /* Increase font size */
+      border: none;
+      /* Remove borders */
+      outline: none;
+      /* Remove outline */
+      background-color: #5A3220;
+      /* Dark grey background */
+      color: black;
+      /* White text */
+      cursor: pointer;
+      /* Pointer cursor on hover */
+      padding: 15px;
+      /* Some padding */
+      border-radius: 10px;
+      /* Rounded corners */
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #FFF8DC;
+      /* Darker grey on hover */
+    }
+
+
+
+
+    /* Footer section styling */
+    .footer-section {
+      padding: 20px 10px;
+      background: #493628;
+      /* Dark background */
+      color: #fff;
+      /* White text */
+      text-align: center;
+      /* Center-align text */
+      width: 100%;
+      position: absolute;
+      left: 0;
+    }
+
+    .footer-section .section-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      /* Adjusted for more spacing */
+    }
+
+    .footer-section .about-us,
+    .footer-section .address,
+    .footer-section .business-hours {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .footer-section .social-link-list {
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      /* Adjust the gap between the icons as needed */
+      margin-top: 10px;
+      /* Adjust the margin as needed */
+    }
+
+    .footer-section .social-link {
+      font-size: 24px;
+      /* Larger icons */
+      color: #fff;
+      text-decoration: none;
+      /* Remove underline */
+      transition: color 0.3s ease;
+    }
+
+    .footer-section .social-link:hover {
+      color: #0073e6;
+      /* Change color on hover */
+    }
+
+    .footer-section .policy-text {
+      font-size: 14px;
+    }
+
+    .footer-section .policy-link {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-section .separator {
+      color: #fff;
+      margin: 0 5px;
+    }
+
+    /* Media queries for smaller screens */
+    @media (max-width: 768px) {
+      .footer-section {
+        padding: 15px 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Video -->
+  <video autoplay loop muted>
+    <source src="bgvid2.mp4" type="video/mp4">
+  </video>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+  <!-- Header / Navbar -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="logob.png" alt="Logo" />
+      </a>
+
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="home.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="menu.html" class="nav-link">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a href="team.html" class="nav-link">Team</a>
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <button id="back-to-top" class="back-to-top">↑Top</button>
+
+
+
+  <main>
+
+    <!-- Contact details section -->
+    <section class="contact-details-section">
+      <div class="contact-details-header">
+        <h1>Contact Details</h1>
+      </div>
+      <div class="contact-details-container">
+        <!-- Location -->
+        <div class="contact-details-item">
+          <div class="icon">📍</div>
+          <h3>Location</h3>
+          <p>11, Jalan Teknologi,<br>Taman Sains Selangor, 1, PJU 5, Kota Damansara,<br>47810 Petaling Jaya, Selangor.
+          </p>
+
+          <a href="https://maps.app.goo.gl/56MnpUP8qS1Pn3AV7" target="_blank">View on Google Maps →</a>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-details-item">
+          <div class="icon"></div>
+          <h3>📞Contact</h3>
+          <p>+6016 9512571</p>
+          <br>
+          <h3>✉️Email</h3>
+          <p>BreadSpire@gmail.com</p>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="contact-details-item">
+          <div class="icon">⏰</div>
+          <h3>Business-hours</h3>
+          <p>Mon-Fri: 9:00-6:00 PM<br>Sat-Sun: Closed</p>
+        </div>
+      </div>
+
+      <!-- Map Info -->
+      <section>
+        <div class="contact-map">
+          <h1>Our Location</h1>
+          <div class="contact-map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.718826920644!2d101.59324545!3d3.1518256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a0d389beeb1%3A0xd1e8b65b5a8c6590!2sKota%20Damansara%2C%2047810%20Petaling%20Jaya%2C%20Selangor!5e0!3m2!1sen!2smy!4v1698851234567"
+              width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+
+            </iframe>
+          </div>
+      </section>
+
+      <!-- contact form -->
+      <section>
+
+        <div class="contact-form-container">
+          <div class="contact-form-info">
+            <h1>Contact Us</h1>
+            <p>Drop us an enquiry or message and we'll get back to you as soon as we can.</p>
+            <p class="coffee-note">Don’t forget to bites our bun's!</p>
+            <label for="option"><a href="https://forms.gle/uRWehmAbGhohVFV39" target="_blank"><i>Message or
+                  Feedback</i><span></a></span></label>
+          </div>
+
+
+          <form action="https://formspree.io/f/mzzzorzr" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="first-name">Name <span>*</span></label>
+              <div class="name-fields">
+                <input type="text" id="first-name" name="first_name" placeholder="First" required>
+                <input type="text" id="last-name" name="last_name" placeholder="Last" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message <span>*</span></label>
+              <textarea id="message" name="message" placeholder="Write your message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer section -->
+      <footer class="footer-section">
+        <div class="section-content">
+          <!-- About Us Section -->
+          <div class="about-us">
+            <p><strong>About BreadSpire</strong></p>
+            <p>We offer freshly baked goods made with love and passion. Join us in savoring the best bakery delights in
+              town.</p>
+          </div>
+
+          <!-- Social Links -->
+          <div class="social-link-list">
+            <!-- Email icon -->
+            <a href="mailto:BreadSpire@gmail.com" class="social-link" target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <!-- Instagram logo -->
+            <a href="https://www.instagram.com/breadspire" class="social-link" target="_blank"
+              rel="noopener noreferrer">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!-- WhatsApp logo -->
+            <a href="https://wa.me/+60169512571" class="social-link" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <!-- Twitter logo -->
+            <a href="https://twitter.com/breadspire" class="social-link" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+
+          <!-- Address Section -->
+          <div class="address">
+            <p><strong>Visit Us:</strong></p>
+            <p>11, Jalan Teknologi, Taman Sains Selangor, 1, PJU 5, Kota Damansara, 47810 Petaling Jaya, Selangor.</p>
+          </div>
+
+          <!-- Business Hours -->
+          <div class="business-hours">
+            <p><strong>Business Hours:</strong></p>
+            <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
+            <p>Sat-Sun: Closed</p>
+          </div>
+
+          <!-- Privacy & Refund Policies -->
+          <p class="policy-text">
+            <a href="/privacy-policy.html" class="policy-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="/refund-policy.html" class="policy-link">Refund Policy</a>
+          </p>
+
+          <!-- Copyright -->
+          <p class="copyright-text">© 2025 BreadSpire</p>
+        </div>
+      </footer>
+
+      <!--accessibility button-->
+
+      <div class="accessibility-options">
+        <button onclick="increaseTextSize()" title="Increase Text Size">🔼</button>
+        <button onclick="decreaseTextSize()" title="Decrease Text Size">🔽</button>
+        <button onclick="toggleDarkMode()">🌙</button>
+      </div>
+      </div>
+
+      <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+
+
+      <script>
+        function scrollMenu(menuId, direction) {
+          const menuWrapper = document.getElementById(menuId)?.querySelector('.menu-wrapper');
+          if (!menuWrapper) return;
+
+          const menuCards = menuWrapper.querySelectorAll('.menu-card');
+          const cardWidth = menuCards[0].offsetWidth + 20;
+          const visibleCards = Math.floor(menuWrapper.parentElement.offsetWidth / cardWidth);
+          const totalCards = menuCards.length;
+
+          let currentTransform = parseInt(menuWrapper.style.transform.replace('translateX(', '').replace('px)', '')) || 0;
+          const maxTransform = -(totalCards - visibleCards) * cardWidth;
+
+          let newTraSnsform = currentTransform - direction * cardWidth;
+          if (newTransform > 0) newTransform = 0;
+          if (newTransform < maxTransform) newTransform = maxTransform;
+
+          menuWrapper.style.transform = `translateX(${newTransform}px)`;
+
+        }
+
+        function submitForm() {
+          const form = document.getElementById('contact');
+          const formData = new FormData(form);
+
+          // Convert form data to JSON
+          const data = {};
+          formData.forEach((value, key) => {
+            data[key] = value;
+          });
+
+          // Send POST request to Google Apps Script Web App
+          fetch('YOhttps://script.google.com/macros/s/AKfycbwG9wE8NjWjo6wpw9VcWR7mkiUr8-Fco_F3zvCtfjgsWVNt5fI1XgTM9Q9fMQGZvTnN/exec', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+            .then(response => response.text())
+            .then(data => {
+              alert(data); // Show success or error message
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('An error occurred. Please try again.');
+            });
+      </script>
+      // accessibility-options //
+      <script>
+      // Minimum and maximum font size
+      const MIN_FONT_SIZE = 12; // Set a lower limit for more flexibility
+      const MAX_FONT_SIZE = 60; // Optional upper limit
+      let currentFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      // Function to increase text size for the entire page
+      function increaseTextSize() {
+        if (currentFontSize < MAX_FONT_SIZE) {
+          currentFontSize += 2;
+          document.documentElement.style.fontSize = currentFontSize + "px";
+        }
+      }
+
+      // Function to decrease text size for the entire page
+      function decreaseTextSize() {
+        if (currentFontSize > MIN_FONT_SIZE) {
+          currentFontSize -= 2;
+          document.documentElement.style.fontSize = currentFontSize + "px";
+        }
+      }
+      </script>
+
+      <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+      }
+      </script>
+
+      //scroll button//
+      <script>
+          // Show the button when the user scrolls down 20px from the top
+          window.onscroll = function () { scrollFunction() };
+
+          function scrollFunction() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              btn.style.display = "block";
+            } else {
+              btn.style.display = "none";
+            }
+          }
+
+          // When the user clicks on the button, scroll to the top of the document
+          function scrollToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          }
+      </script>
+</body>
+
+</html>
